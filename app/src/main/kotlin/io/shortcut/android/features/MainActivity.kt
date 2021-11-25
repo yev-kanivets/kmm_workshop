@@ -11,14 +11,14 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.MutableLiveData
-import io.shortcut.features.space.redux.SpaceRequests
-import io.shortcut.features.space.redux.SpaceState
+import io.shortcut.features.github.redux.GitHubRequests
+import io.shortcut.features.github.redux.GitHubState
 import io.shortcut.redux.store
 import tw.geothings.rekotlin.StoreSubscriber
 
-class MainActivity : ComponentActivity(), StoreSubscriber<SpaceState> {
+class MainActivity : ComponentActivity(), StoreSubscriber<GitHubState> {
 
-    private val spaceState = MutableLiveData<SpaceState>()
+    private val gitHubState = MutableLiveData<GitHubState>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +26,11 @@ class MainActivity : ComponentActivity(), StoreSubscriber<SpaceState> {
             MainView()
         }
 
-        store.dispatch(SpaceRequests.FetchPeopleInSpace())
+        store.dispatch(GitHubRequests.FetchIssues())
     }
 
-    override fun onNewState(state: SpaceState) {
-        spaceState.postValue(state)
+    override fun onNewState(state: GitHubState) {
+        gitHubState.postValue(state)
     }
 
     override fun onStart() {
@@ -38,8 +38,8 @@ class MainActivity : ComponentActivity(), StoreSubscriber<SpaceState> {
 
         store.subscribe(this) { state ->
             state.skipRepeats { oldState, newState ->
-                oldState.space == newState.space
-            }.select { it.space }
+                oldState.gitHub == newState.gitHub
+            }.select { it.gitHub }
         }
     }
 
@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity(), StoreSubscriber<SpaceState> {
     private fun MainView(
         modifier: Modifier = Modifier
     ) {
-        val state = spaceState.observeAsState().value ?: return
+        val state = gitHubState.observeAsState().value ?: return
 
         Box(
             modifier = modifier.fillMaxSize(),
@@ -60,8 +60,8 @@ class MainActivity : ComponentActivity(), StoreSubscriber<SpaceState> {
         ) {
             Text(
                 text = when (state.status) {
-                    SpaceState.Status.IDLE -> state.peopleInSpace?.number.toString()
-                    SpaceState.Status.PENDING -> "Loading ..."
+                    GitHubState.Status.IDLE -> state.issues
+                    GitHubState.Status.PENDING -> "Loading ..."
                 }
             )
         }

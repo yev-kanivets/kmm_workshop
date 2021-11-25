@@ -7,7 +7,7 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.http.*
 
-const val BACKEND_LINK = "api.open-notify.org"
+const val BACKEND_LINK = "api.github.com"
 
 class HttpClientFactory {
 
@@ -15,7 +15,7 @@ class HttpClientFactory {
         defaultRequest {
             url {
                 host = BACKEND_LINK
-                protocol = URLProtocol.HTTP
+                protocol = URLProtocol.HTTPS
             }
         }
         Json {
