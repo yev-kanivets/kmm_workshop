@@ -1,4 +1,4 @@
-name: KMP Mobile Template
+name: KMM Workshop
 options:
   createIntermediateGroups: true
   indentWidth: 4
@@ -13,34 +13,34 @@ configs:
   test: debug
   Release: release
 targets:
-  "KMP Mobile Template":
+  "KMM Workshop":
     type: application
     platform: iOS
     deploymentTarget: "13.2"
     sources:  
-      - path: "KMP Mobile Template"
+      - path: "KMM Workshop"
     scheme: 
       testTargets:
-        - "KMP Mobile Template Tests"
-        - "KMP Mobile Template UITests"
+        - "KMM Workshop Tests"
+        - "KMM Workshop UITests"
       gatherCoverageData: true
-  "KMP Mobile Template Tests":
+  "KMM Workshop Tests":
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "13.2"
     sources:
-      - path: "KMP Mobile Template Tests"
+      - path: "KMM Workshop Tests"
     dependencies:
-      - target: "KMP Mobile Template"
+      - target: "KMM Workshop"
     scheme: 
       testTargets:
-        - "KMP Mobile Template"
-        - "KMP Mobile Template Tests"
+        - "KMM Workshop"
+        - "KMM Workshop Tests"
       gatherCoverageData: true
-  "KMP Mobile Template UITests":
+  "KMM Workshop UITests":
     type: bundle.ui-testing
     platform: iOS
     sources:
-      - path: "KMP Mobile Template UITests"
+      - path: "KMM Workshop UITests"
     dependencies:
-      - target: "KMP Mobile Template"
+      - target: "KMM Workshop"
