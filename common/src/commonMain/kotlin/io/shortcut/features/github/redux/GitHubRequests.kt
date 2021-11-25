@@ -1,5 +1,6 @@
 package io.shortcut.features.github.redux
 
+import io.shortcut.features.github.entity.Issue
 import io.shortcut.features.github.repository.GitHubRepository
 import io.shortcut.network.Response
 import io.shortcut.redux.Request
@@ -21,7 +22,7 @@ class GitHubRequests {
             store.dispatch(result)
         }
 
-        data class Success(val issues: String): Action
+        data class Success(val issues: List<Issue>): Action
         data class Failure(override val message: String?): ToastAction
     }
 }
