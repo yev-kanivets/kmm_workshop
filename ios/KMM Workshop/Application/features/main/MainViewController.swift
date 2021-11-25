@@ -17,9 +17,9 @@ class MainViewController: UIHostingController<MainView>, ReKampStoreSubscriber {
 
         store.subscribe(subscriber: self) { subscription in
             subscription.skipRepeats { oldState, newState in
-                return KotlinBoolean(bool: oldState.space == newState.space)
+                return KotlinBoolean(bool: oldState.gitHub == newState.gitHub)
             }.select { state in
-                return state.space
+                return state.gitHub
             }
         }
     }
@@ -31,15 +31,15 @@ class MainViewController: UIHostingController<MainView>, ReKampStoreSubscriber {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        store.dispatch(action: SpaceRequests.FetchPeopleInSpace())
+        store.dispatch(action: GitHubRequests.FetchIssues())
     }
     
     func onNewState(state: Any) {
-        let state = state as! SpaceState
+        let state = state as! GitHubState
 
         switch(state.status) {
         case .idle:
-            rootView.peoplesInSpace = "\(state.peopleInSpace?.number ?? 0)"
+            rootView.peoplesInSpace = "\(state.issues.count)"
         case .pending:
             rootView.peoplesInSpace = "Loading ..."
         default:
