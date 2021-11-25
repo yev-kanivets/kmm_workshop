@@ -6,7 +6,7 @@ plugins {
 android {
     compileSdkVersion(31)
     defaultConfig {
-        applicationId = "io.xorum.android"
+        applicationId = "io.shortcut.android"
         minSdkVersion(21)
         targetSdkVersion(31)
         versionCode = 1

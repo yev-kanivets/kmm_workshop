@@ -1,11 +1,11 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'common'
     spec.version                  = '0.0.1-SNAPSHOT'
-    spec.homepage                 = 'https://github.com/xorum-io/kmp_mobile_template'
+    spec.homepage                 = 'https://github.com/yev-kanivets/kmm_workshop'
     spec.source                   = { :git => "Not Published", :tag => "Cocoapods/#{spec.name}/#{spec.version}" }
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'KMP Mobile Template common module'
+    spec.summary                  = 'KMM Workshop'
 
     spec.vendored_frameworks      = "build/cocoapods/framework/common.framework"
     spec.libraries                = "c++"

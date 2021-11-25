@@ -67,8 +67,8 @@ kotlin {
     }
 
     cocoapods {
-        summary = "KMP Mobile Template common module"
-        homepage = "https://github.com/xorum-io/kmp_mobile_template"
+        summary = "KMM Workshop"
+        homepage = "https://github.com/yev-kanivets/kmm_workshop"
     }
 }
 
@@ -81,6 +81,6 @@ android {
 }
 
 xcode {
-    projectPath = "../ios/KMP Mobile Template.xcodeproj"
-    target = "KMP Mobile Template"
+    projectPath = "../ios/KMM Workshop.xcodeproj"
+    target = "KMM Workshop"
 }

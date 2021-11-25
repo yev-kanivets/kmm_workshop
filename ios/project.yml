@@ -4,7 +4,7 @@ options:
   indentWidth: 4
   tabWidth: 4
 settings:
-  PRODUCT_BUNDLE_IDENTIFIER: "io.xorum.ios"
+  PRODUCT_BUNDLE_IDENTIFIER: "io.shortcut.ios"
   MARKETING_VERSION: 0.0.1
   CURRENT_PROJECT_VERSION: 1
 configs:

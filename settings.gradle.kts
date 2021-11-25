@@ -1,4 +1,4 @@
-rootProject.name = "kmp_mobile_template"
+rootProject.name = "kmm_workshop"
 
 val buildAndroid = extra["org.gradle.project.buildAndroid"].toString().toBoolean()
 if (buildAndroid) {

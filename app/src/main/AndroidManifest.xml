@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.xorum.android">
+    package="io.shortcut.android">
 
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
-      android:name="io.xorum.android.XorumApplication"
+      android:name="io.shortcut.android.KMMApplication"
       android:allowBackup="true"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
@@ -14,7 +14,7 @@
       android:supportsRtl="true">
 
     <activity
-        android:name="io.xorum.android.features.MainActivity"
+        android:name="io.shortcut.android.features.MainActivity"
         android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
