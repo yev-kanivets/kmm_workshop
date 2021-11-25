@@ -31,18 +31,35 @@ class MainViewController: UIHostingController<MainView>, ReKampStoreSubscriber {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "KMM Workshop"
+        rootView.onTap = { [weak self] issueNumber in
+            let detailsViewController = DetailsViewController(issueNumber: issueNumber)
+            self?.navigationController?.pushViewController(detailsViewController, animated: true)
+        }
+        
         store.dispatch(action: GitHubRequests.FetchIssues())
     }
     
     func onNewState(state: Any) {
         let state = state as! GitHubState
-        rootView.issues = state.issues
+
+        switch(state.status) {
+        case .idle:
+            rootView.issues = state.issues
+        case .pending:
+            break
+            // rootView.issues = "Loading ..."
+        default:
+            break
+        }
     }
 }
 
 struct MainView: View {
 
     var issues: [Issue] = []
+    var onTap: (Int) -> () = { _ in }
     
     var body: some View {
         if issues.isEmpty {
@@ -63,6 +80,7 @@ struct MainView: View {
                         .background(Color.white)
                         .cornerRadius(4)
                         .shadow(radius: 10)
+                        .onTapGesture { onTap(Int(issue.number)) }
                     }
                 }
                 .padding(.vertical, 8)
