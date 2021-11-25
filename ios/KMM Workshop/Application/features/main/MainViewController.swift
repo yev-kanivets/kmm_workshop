@@ -36,23 +36,38 @@ class MainViewController: UIHostingController<MainView>, ReKampStoreSubscriber {
     
     func onNewState(state: Any) {
         let state = state as! GitHubState
-
-        switch(state.status) {
-        case .idle:
-            rootView.peoplesInSpace = "\(state.issues.count)"
-        case .pending:
-            rootView.peoplesInSpace = "Loading ..."
-        default:
-            break
-        }
+        rootView.issues = state.issues
     }
 }
 
 struct MainView: View {
 
-    var peoplesInSpace = ""
+    var issues: [Issue] = []
     
     var body: some View {
-        Text(peoplesInSpace)
+        if issues.isEmpty {
+            Text("Loading ...")
+        } else {
+            ScrollView {
+                VStack(spacing: 8) {
+                    ForEach(issues, id: \.number) { issue in
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("#\(issue.number): \(issue.title)")
+                                .font(.headline)
+                            
+                            Text(issue.body)
+                                .font(.body)
+                        }
+                        .padding(8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.white)
+                        .cornerRadius(4)
+                        .shadow(radius: 10)
+                    }
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+            }
+        }
     }
 }

@@ -24,17 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().run {
             $0.isTranslucent = false
             $0.barTintColor = .white
-            $0.tintColor = .white
-        }
-
-        UITabBar.appearance().run {
-            $0.isTranslucent = false
-            $0.barTintColor = .white
-            $0.itemPositioning = .centered
         }
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = rootViewController
+        window!.rootViewController = UINavigationController(rootViewController: rootViewController)
         window!.makeKeyAndVisible()
 
         if #available(iOS 13.0, *) {
