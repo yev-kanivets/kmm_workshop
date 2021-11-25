@@ -19,6 +19,11 @@ fun getHubReducer(action: Action, state: AppState): GitHubState {
         is GitHubRequests.FetchIssues.Failure -> {
             newState = newState.copy(status = GitHubState.Status.IDLE)
         }
+        is GitHubRequests.UpdateIssue.Success -> {
+            newState = newState.copy(issues = newState.issues.map {
+                if (it.number == action.issue.number) action.issue else it
+            })
+        }
     }
 
     return newState

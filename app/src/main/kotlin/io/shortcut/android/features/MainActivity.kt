@@ -3,6 +3,7 @@ package io.shortcut.android.features
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -62,6 +63,10 @@ class MainActivity : ComponentActivity(), StoreSubscriber<GitHubState> {
         store.unsubscribe(this)
     }
 
+    private fun showDetails(
+        issueNumber: Int
+    ) = startActivity(DetailsActivity.createIntent(this, issueNumber))
+
     @Composable
     private fun MainView(
         modifier: Modifier = Modifier
@@ -85,7 +90,9 @@ class MainActivity : ComponentActivity(), StoreSubscriber<GitHubState> {
     ) {
         items(issues) { issue ->
             Card(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { showDetails(issueNumber = issue.number) }
             ) {
                 Column(
                     modifier = Modifier.padding(8.dp)
